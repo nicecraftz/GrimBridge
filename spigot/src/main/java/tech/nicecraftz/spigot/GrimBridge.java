@@ -24,12 +24,14 @@ public final class GrimBridge extends JavaPlugin {
         Plugin grimAcPlugin = pluginManager.getPlugin("GrimAC");
         if (grimAcPlugin == null || !grimAcPlugin.isEnabled()) {
             getLogger().severe("Couldn't load the plugin because Grim Anticheat is missing.");
+            getPluginManager().disablePlugin(this);
             return;
         }
 
         RegisteredServiceProvider<GrimAbstractAPI> rsp = Bukkit.getServicesManager().getRegistration(GrimAbstractAPI.class);
         if (rsp == null) {
             getLogger().severe("Couldn't load the plugin because Grim Anticheat is missing.");
+            getPluginManager().disablePlugin(this);
             return;
         }
 
