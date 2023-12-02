@@ -1,0 +1,7 @@
+name: GrimBridge
+version: '1.0'
+main: tech.nicecraftz.spigot.GrimBridge
+api-version: '1.20'
+authors: [ nicecraftz ]
+
+depend: [ "GrimAC" ]

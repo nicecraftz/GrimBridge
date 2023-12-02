@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group = 'tech.nicecraftz'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+}
+
+dependencies {
+    implementation(project(":common"))
+    compileOnly "com.velocitypowered:velocity-api:3.2.0-SNAPSHOT"
+    annotationProcessor "com.velocitypowered:velocity-api:3.2.0-SNAPSHOT"
+}

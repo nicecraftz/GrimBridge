@@ -1,0 +1,14 @@
+group = 'tech.nicecraftz'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+}
+
+dependencies {
+    implementation(project(":common"))
+    compileOnly "net.md-5:bungeecord-api:1.20-R0.1-SNAPSHOT"
+}

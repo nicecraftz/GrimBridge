@@ -1,0 +1,20 @@
+group = 'tech.nicecraftz'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        name = "spigotmc-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven { url = uri("https://jitpack.io/") }
+}
+
+dependencies {
+    implementation(project(":common"))
+    compileOnly 'com.github.MWHunter:GrimAPI:c3a80bd'
+    compileOnly "org.spigotmc:spigot-api:1.20.2-R0.1-SNAPSHOT"
+}
