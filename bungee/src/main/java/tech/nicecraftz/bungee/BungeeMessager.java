@@ -2,19 +2,27 @@ package tech.nicecraftz.bungee;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
-import lombok.RequiredArgsConstructor;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import tech.nicecraftz.common.Messager;
 
-@RequiredArgsConstructor
+import java.util.logging.Logger;
+
 public class BungeeMessager implements Messager, Listener {
-    private final GrimBridge grimBridge;
+    private final ProxyServer proxyServer;
+    private final Logger logger;
+
+    public BungeeMessager(GrimBridge grimBridge) {
+        proxyServer = grimBridge.getProxy();
+        logger = grimBridge.getLogger();
+    }
 
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
         if (!event.getTag().equalsIgnoreCase(Messager.PLUGIN_CHANNEL)) return;
+        logger.info("Received punishment command from backend server, handling...");
 
         ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
         String command = in.readUTF();
@@ -23,17 +31,16 @@ public class BungeeMessager implements Messager, Listener {
 
     @Override
     public void register() {
-        grimBridge.getProxy().registerChannel(PLUGIN_CHANNEL);
+        proxyServer.registerChannel(PLUGIN_CHANNEL);
     }
 
     @Override
     public void unregister() {
-        grimBridge.getProxy().unregisterChannel(PLUGIN_CHANNEL);
-
+        proxyServer.unregisterChannel(PLUGIN_CHANNEL);
     }
 
     @Override
     public void execute(String command) {
-        grimBridge.getProxy().getPluginManager().dispatchCommand(grimBridge.getProxy().getConsole(), command);
+        proxyServer.getPluginManager().dispatchCommand(proxyServer.getConsole(), command);
     }
 }

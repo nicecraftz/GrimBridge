@@ -4,25 +4,32 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
-import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.messages.ChannelRegistrar;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
-import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import tech.nicecraftz.common.Messager;
 
-@RequiredArgsConstructor
 public class VelocityMessager implements Messager {
     private static final MinecraftChannelIdentifier MESSAGE_CHANNEL = MinecraftChannelIdentifier.from(Messager.PLUGIN_CHANNEL);
+    private final Logger logger;
     private final ProxyServer proxyServer;
+    private final ChannelRegistrar channelRegistrar;
+
+    public VelocityMessager(GrimBridge grimBridge) {
+        logger = grimBridge.getLogger();
+        proxyServer = grimBridge.getProxyServer();
+        channelRegistrar = proxyServer.getChannelRegistrar();
+    }
 
     @Override
     public void register() {
-        proxyServer.getChannelRegistrar().register(MESSAGE_CHANNEL);
+        channelRegistrar.register(MESSAGE_CHANNEL);
     }
 
     @Override
     public void unregister() {
-        proxyServer.getChannelRegistrar().unregister(MESSAGE_CHANNEL);
+        channelRegistrar.unregister(MESSAGE_CHANNEL);
     }
 
     @Override
@@ -32,16 +39,10 @@ public class VelocityMessager implements Messager {
 
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {
-        System.out.println("Received proxy message");
-        if (!(event.getSource() instanceof Player)) return;
-        System.out.println("Source is player");
         if (event.getIdentifier() != MESSAGE_CHANNEL) return;
-        System.out.println("identifier is right channel");
-
+        logger.info("Received punishment command from backend server, handling...");
         ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
         String command = in.readUTF();
-        System.out.println("Trying to execute " + command);
         execute(command);
-        System.out.println("Ran command");
     }
 }
