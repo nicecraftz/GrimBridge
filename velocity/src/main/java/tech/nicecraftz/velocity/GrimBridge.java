@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 @Plugin(
         id = "grimbridge",
         name = "GrimBridge",
-        version = "1.0",
+        version = "1.1",
         authors = {"nicecraftz"}
 )
 @Getter
