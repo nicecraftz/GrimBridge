@@ -1,5 +1,5 @@
 ## Installation
-- Install the plugin from the [release tab](https://github.com/nicecraftz/GrimBridge/releases/tag/Release)
+- Install the plugin from the [release tab](https://github.com/nicecraftz/GrimBridge/releases)
 - Drag and drop the file into your server (both proxy and server)
 - Reboot your server
 - Enjoy
