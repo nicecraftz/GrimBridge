@@ -1,7 +1,7 @@
 package tech.nicecraftz.common;
 
 public interface Messager {
-    String PLUGIN_CHANNEL = "grimbridge:communication";
+    String PLUGIN_CHANNEL = "grimbridge:msg";
 
     void register();
 
