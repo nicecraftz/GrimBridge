@@ -3,6 +3,7 @@ package tech.nicecraftz.bungee;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -22,6 +23,8 @@ public class BungeeMessager implements Messager, Listener {
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
         if (!event.getTag().equalsIgnoreCase(Messager.PLUGIN_CHANNEL)) return;
+        // Only accept servers
+        if (event.getSender() instanceof ProxiedPlayer) return;
         logger.info("Received punishment command from backend server, handling...");
 
         ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
