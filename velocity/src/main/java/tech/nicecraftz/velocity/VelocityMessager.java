@@ -4,7 +4,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
-import com.velocitypowered.api.proxy.ConsoleCommandSource;
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.ChannelRegistrar;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
@@ -42,7 +42,7 @@ public class VelocityMessager implements Messager {
     public void onPluginMessage(PluginMessageEvent event) {
         if (event.getIdentifier() != MESSAGE_CHANNEL) return;
         // Only accept servers
-        if (!(event.getSource() instanceof ConsoleCommandSource)) return;
+        if (event.getSource() instanceof Player) return;
         logger.info("Received punishment command from backend server, handling...");
         ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
         String command = in.readUTF();
