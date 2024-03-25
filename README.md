@@ -22,4 +22,4 @@ Punishments:
 
 
 ## Issues
-If you find any problems inside the plugin you can join my [discord server](https://discord.gg/E94frTEz) and report it! Or if you want you can always fix it yourself and send me a cool pull request :)
+If you find any problems inside the plugin you can join my [discord server](https://discord.gg/ZYvdE9hYz8) and report it! Or if you want you can always fix it yourself and send me a cool pull request :)
