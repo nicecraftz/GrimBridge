@@ -1,6 +1,6 @@
 package tech.nicecraftz.spigot;
 
-import ac.grim.grimac.GrimAbstractAPI;
+import ac.grim.grimac.api.GrimAbstractAPI;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

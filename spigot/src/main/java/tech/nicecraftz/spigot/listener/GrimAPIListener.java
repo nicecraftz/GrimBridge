@@ -1,6 +1,6 @@
 package tech.nicecraftz.spigot.listener;
 
-import ac.grim.grimac.events.CommandExecuteEvent;
+import ac.grim.grimac.api.events.CommandExecuteEvent;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import org.bukkit.Bukkit;
