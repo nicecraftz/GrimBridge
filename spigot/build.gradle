@@ -15,6 +15,6 @@ repositories {
 
 dependencies {
     implementation(project(":common"))
-    compileOnly 'com.github.grimanticheat:GrimAPI:d7fdef7186'
+    compileOnly 'com.github.grimanticheat:grimapi:05e31d62f2'
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 }
